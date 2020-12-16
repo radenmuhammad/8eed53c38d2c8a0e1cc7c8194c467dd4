@@ -62,14 +62,6 @@ if(!isset($_GET['code'])) {
     'client_secret' => $client_secret,
     'code_verifier' => $_SESSION['code_verifier'],
   ]);
-  echo "<pre>";
-print_r($response);
-  echo "</pre>";
-
-  echo "<pre>";
-print_r($metadata);
-  echo "</pre>";
-
 
   if(!isset($response->access_token)) {
     die('Error fetching access token');
@@ -83,10 +75,10 @@ print_r($metadata);
 
   if($token->active == 1) {
     $_SESSION['username'] = $token->username;
-    echo "<pre>";
-    print_r($_SESSION);
-    echo "</pre>";
-    header('Location: /http://localhost:8080/rest_api');
+	?>
+	<script>document.location.href='http://localhost:8080/rest_api';</script>
+	<?php
+  // header('Location: http://localhost:8080/rest_api');
     die();
   }
 
